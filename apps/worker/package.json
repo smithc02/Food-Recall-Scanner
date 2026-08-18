@@ -1,0 +1,19 @@
+{
+  "name": "@food-recall/worker",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc --noEmit",
+    "start": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@food-recall/config": "workspace:*",
+    "dotenv": "16.6.1"
+  },
+  "devDependencies": {
+    "tsx": "4.20.5"
+  }
+}

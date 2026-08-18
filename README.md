@@ -22,6 +22,61 @@ Project documentation:
 - [Recall Data Sources](docs/DATA-SOURCES.md)
 - [Codex Development Workflow](docs/CODEX-WORKFLOW.md)
 
+## Local development (Windows 11 / PowerShell)
+
+### Prerequisites
+
+- Node.js 22 or newer (Node.js 24 is used in CI)
+- pnpm 10 or newer, invoked with Corepack (`corepack pnpm`)
+- Docker Desktop configured to use the WSL2 backend
+
+The repository does not contain development credentials. Create a local `.env` from the
+placeholder template and use unique values that are only for your machine:
+
+```powershell
+Copy-Item .env.example .env
+notepad .env
+```
+
+Set `POSTGRES_USER`, `POSTGRES_PASSWORD`, `REDIS_PASSWORD`, `MINIO_ACCESS_KEY`, and
+`MINIO_SECRET_KEY`. Keep the `DATABASE_URL` and `REDIS_URL` values consistent with those
+credentials. All passwords and the MinIO secret key must be at least 16 characters.
+
+Bootstrap dependencies and start the local dependency stack:
+
+```powershell
+corepack pnpm install --frozen-lockfile
+docker compose up -d
+docker compose ps
+```
+
+Start the web app and worker in separate PowerShell windows:
+
+```powershell
+corepack pnpm dev:web
+corepack pnpm dev:worker
+```
+
+The web health endpoint is `http://127.0.0.1:3000/api/health`. The worker intentionally
+only validates its configuration and starts a shell in Milestone 0; it does not connect to,
+ingest from, or process any external service yet.
+
+Run repository checks:
+
+```powershell
+corepack pnpm lint
+corepack pnpm format:check
+corepack pnpm typecheck
+corepack pnpm test
+corepack pnpm build
+```
+
+Docker services bind only to `127.0.0.1` for local development. They are not production
+deployment configuration. To stop local dependencies, run `docker compose down`; add `-v`
+only when intentionally deleting local development data.
+
 ## Project status
 
-**Planning / architecture.** No production application code has been committed yet.
+**Milestone 0 complete.** The repository includes the workspace foundation, local development
+dependencies, application shells, environment validation, health endpoint, tests, and CI. Recall
+ingestion, matching, and product scanning are intentionally deferred to later milestones.
