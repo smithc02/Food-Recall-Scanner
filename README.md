@@ -77,4 +77,6 @@ only when intentionally deleting local development data.
 
 ## Project status
 
-**Planning / architecture.** No production application code has been committed yet.
+**Milestone 0 complete.** The repository includes the workspace foundation, local development
+dependencies, application shells, environment validation, health endpoint, tests, and CI. Recall
+ingestion, matching, and product scanning are intentionally deferred to later milestones.

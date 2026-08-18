@@ -15,7 +15,12 @@ export default tseslint.config(
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
-  nextPlugin.flatConfig.recommended,
+  nextPlugin.configs.recommended,
+  {
+    rules: {
+      "@next/next/no-html-link-for-pages": "off",
+    },
+  },
   {
     files: ["**/*.{js,mjs,cjs}"],
     languageOptions: { globals: globals.node },
