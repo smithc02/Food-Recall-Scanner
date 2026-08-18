@@ -1,0 +1,31 @@
+{
+  "name": "food-recall-scanner",
+  "private": true,
+  "packageManager": "pnpm@10.19.0",
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "scripts": {
+    "dev:web": "corepack pnpm --filter @food-recall/web dev",
+    "dev:worker": "corepack pnpm --filter @food-recall/worker dev",
+    "build": "corepack pnpm --filter @food-recall/web build && corepack pnpm --filter @food-recall/worker build && corepack pnpm --filter @food-recall/config build && corepack pnpm --filter @food-recall/db build && corepack pnpm --filter @food-recall/domain build && corepack pnpm --filter @food-recall/recall build && corepack pnpm --filter @food-recall/testing build && corepack pnpm --filter @food-recall/vision build",
+    "lint": "eslint . --max-warnings=0",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "test": "vitest run --config vitest.config.ts",
+    "typecheck": "corepack pnpm --filter @food-recall/web typecheck && corepack pnpm --filter @food-recall/worker typecheck && corepack pnpm --filter @food-recall/config typecheck && corepack pnpm --filter @food-recall/db typecheck && corepack pnpm --filter @food-recall/domain typecheck && corepack pnpm --filter @food-recall/recall typecheck && corepack pnpm --filter @food-recall/testing typecheck && corepack pnpm --filter @food-recall/vision typecheck"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.37.0",
+    "@next/eslint-plugin-next": "15.5.4",
+    "@types/node": "24.7.2",
+    "eslint": "9.37.0",
+    "eslint-config-next": "15.5.4",
+    "globals": "16.4.0",
+    "prettier": "3.6.2",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.46.0",
+    "vitest": "3.2.4"
+  }
+}
