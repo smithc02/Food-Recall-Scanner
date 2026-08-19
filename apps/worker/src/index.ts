@@ -1,5 +1,7 @@
-import "dotenv/config";
 import { loadWorkerEnvironment } from "@food-recall/config";
+import { loadWorkerDotenv } from "./load-env.js";
+
+loadWorkerDotenv();
 
 const environment = loadWorkerEnvironment();
 
